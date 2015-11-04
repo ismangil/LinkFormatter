@@ -1,16 +1,25 @@
 apply plugin: 'com.android.application'
+import org.ajoberstar.grgit.*
 
 android {
     signingConfigs {
 
     }
+
+    def grgit = Grgit.open();
+
+    def generatedVersionCode = grgit.log(includes:['HEAD']).size()
+
+    println 'Generated versionCode = '+generatedVersionCode
+
+
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
     defaultConfig {
         applicationId "com.ismangil.linkformatter"
         minSdkVersion 9
         targetSdkVersion 23
-        versionCode 2
+        versionCode generatedVersionCode
         versionName "1.0"
     }
     buildTypes {
