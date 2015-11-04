@@ -38,6 +38,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.MimeTypeMap;
 import android.webkit.WebView;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,6 +69,7 @@ public class LinkActivity extends AppCompatActivity {
     ImageView iv1 = null;
     TextView tv1 = null;
     WebView wv1 = null;
+    CheckBox cb1 = null;
     ImageLoader imageLoader = ImageLoader.getInstance();
     String src = "";
     StringBuilder formattedLinkBuilder = new StringBuilder();
@@ -136,6 +138,16 @@ public class LinkActivity extends AppCompatActivity {
 
                                     imageLoader.displayImage(src, iv1);
 
+                                    cb1 = (CheckBox) findViewById(R.id.checkboxImage);
+
+                                    cb1.setVisibility(View.VISIBLE);
+
+                                    if (cb1.isChecked()) {
+
+                                        formattedLinkBuilder.append("<img src=\"");
+                                        formattedLinkBuilder.append(src);
+                                        formattedLinkBuilder.append("\" />");
+                                    }
 
                                 }
                             } catch (NumberFormatException e)
@@ -144,6 +156,7 @@ public class LinkActivity extends AppCompatActivity {
                                 }
 
                         }
+
 
                         formattedLinkBuilder.append("<a href=\"");
                         formattedLinkBuilder.append(url);
@@ -212,5 +225,15 @@ public class LinkActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onCheckBoxClicked(View view) {
+
+        boolean checked = ((CheckBox) view).isChecked();
+
+        if (!checked){
+            wv1.loadData("TODO: reformat without IMG","text/html",null);
+        }
+
     }
 }

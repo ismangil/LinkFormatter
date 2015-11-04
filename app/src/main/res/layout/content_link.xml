@@ -25,10 +25,26 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/linkTitle"/>
 
+    <CheckBox
+        android:id="@+id/checkboxImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ImageView1"
+        android:layout_below="@id/linkTitle"
+        android:checked="true"
+        android:visibility="invisible"
+        android:onClick="onCheckBoxClicked"/>
+
+    <TextView
+        android:id="@+id/previewLabel"
+        android:text="Preview:" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ImageView1"/>
+
     <WebView
         android:id="@+id/WebView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ImageView1">
+        android:layout_below="@id/previewLabel">
     </WebView>
 </RelativeLayout>
